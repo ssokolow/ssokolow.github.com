@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+"""
+A simple little script to convert Microsoft Word files into Konqueror .war 
+archives (an HTML file and it's dependencies inside a renamed .tar file)
+using wvHtml.
+
+TODO:
+- Add a file magic check to identify and rename RTF files with .doc extensions.
+"""
+
+import os, shutil, sys, tarfile, tempfile
+
+def do_conversion(fldrname, target):
+  """Put the contents of a folder into a war archive."""
+  warfile = tarfile.open(target, 'w')
+  for filename in os.listdir(fldrname):
+	print "--- Adding " + filename
+  	warfile.add(os.path.join(fldrname,filename), filename)
+  warfile.close()
+
+if __name__ == "__main__" and len(sys.argv) > 1:
+	for source in sys.argv[1:]:
+		filepath = os.path.abspath(source)
+		filename = os.path.split(filepath)[1]
+		dirname  = tempfile.mkdtemp(prefix="doc2war-")
+		htmlpath = os.path.join(dirname,'index.html')
+		warbase  = os.path.splitext(filepath)[0]
+
+		print "Reading " + filename
+		if not os.spawnlp(os.P_WAIT,'wvHtml','wvHtml',filepath,htmlpath):
+			flist = os.listdir(dirname)
+
+			if len(flist) == 1 and os.stat(htmlpath).st_size:
+				print "-- Creating %s.html" % os.path.split(warbase)[1]
+				shutil.move(htmlpath, warbase + ".html")
+			elif len(flist) > 1 and os.stat(htmlpath).st_size:
+				print "-- Creating %s.war" % os.path.split(warbase)[1]
+				do_conversion(dirname, warbase + ".war")
+			else:
+				print "!! Could not convert " + filename
+				print "wvHtml was unable to read the given file"
+		
+		shutil.rmtree(dirname)
+		if [x for x in ('.war', '.html') if os.path.exists(warbase + x)]:
+			print "-- Deleting " + filename
+			os.remove(filepath)
+elif __name__ == '__main__':
+	print "Usage: %s [input file] ..." % sys.argv[0]

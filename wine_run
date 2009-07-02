@@ -1,0 +1,7 @@
+#!/bin/bash
+# A three-line wrapper script to allow double-clicked .exe files to be run 
+# with the working directory they expect.
+
+pushd "${1%/*}" > /dev/null
+wine "$@"
+popd > /dev/null
