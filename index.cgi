@@ -17,9 +17,11 @@ Non-obvious Features:
 
 Warnings:
 - The HTML templating is a quick hackjob. I'm not kidding.
-- Don't forget to change the <title> and remove my Google Analytics footer.
+- Don't forget to remove the template bits specific to my site.
 
-TODO: Switch to a proper templating solution?
+TODO:
+- Switch to a proper templating solution? (No longer a single-file script)
+- Add caching eventually (current run time for my site, 0.1 seconds)
 """
 
 __appname__ = "Lazybones Script Lister"
@@ -104,6 +106,10 @@ PAGE_HEADER = """Content-Type: text/html; charset=utf-8
                 haven't had time to clean up for general use. Feel free to use
                 them if you like. Unless otherwise stated, they're licensed under
                 the GNU GPL version 2 or later.</p>
+            <b>Note:</b> My multi-file projects may be found on my
+            <a href="http://github.com/ssokolow">GitHub</a> and
+            <a href="https://launchpad.net/~ssokolow/+related-software">Launchpad</a>
+            profiles.
         </div>
 """
 
@@ -122,6 +128,12 @@ pageTracker._trackPageview();
 </script>
     </body>
 </html>"""
+
+#TODO: Make use of this regex to sanitize input before using it in HTML/XML.
+#(Should also be sanitizing 0xD800-0xDFFF, 0xFFFE-0xFFFF, and 0x110000, but
+# that has to wait until I've added support for parsing and honoring encoding
+# declarations)
+control_char_re      = re.compile('[\x00-\x09\x0B\x0C\x0E-\x1F]')
 
 bad_anchor_char_re   = re.compile('[^A-Za-z0-9-_:.]+')
 hyperlinkable_url_re = re.compile(r"""((?:ht|f)tps?://[^\s()]+(?:\([^\s()]+\))*[^\s()]*)""", re.IGNORECASE | re.UNICODE)
@@ -147,6 +159,7 @@ class ScriptEntry(object):
     shabang_re = None
     license_re = None
     extensions = []
+    anchors = []        # Static
 
     def __cmp__(self, other):
         """Make ScriptEntry objects case-insensitive sortable by name."""
@@ -168,7 +181,14 @@ class ScriptEntry(object):
         _['anchor'] = bad_anchor_char_re.sub('_',_['filename']).lower()
         if not _['anchor'][0].isalpha():
             _['anchor'] = 'a' + _['anchor']
-        #TODO: Fix this to avoid the possibility of duplicate anchors.
+
+        # Ensure no duplicate anchors
+        if _['anchor'] in self.anchors:
+            count = 0
+            while ('%s%d' % (_['anchor'], count)) in self.anchors:
+                count += 1
+            _['anchor'] = '%s%d' % (_['anchor'], count)
+        self.anchors.append(_['anchor'])
 
         # Make sure that the filename will be used as a fallback program name.
         _['name'] = _['filename']
@@ -177,8 +197,9 @@ class ScriptEntry(object):
         self._do_init()
 
         # Allow controlled truncation of module docstrings.
-        if '\n--clip--\n' in _['description']:
-            _['description'] = _['description'].split('\n--clip--\n',1)[0] + '\n[...]'
+        for marker in ('--snip--', '--clip--'):
+            if '\n%s\n' % marker in _['description']:
+                _['description'] = _['description'].split('\n%s\n' % marker,1)[0] + '\n[...]'
 
         # Add various pretty-printed and escaped values to the metadata dict.
         _.update({
@@ -201,9 +222,11 @@ class ScriptEntry(object):
                 _['license_h'] = regex.sub(r'<a href="%s">\2</a>' % LICENSES[regex], _['license'])
 
     def _do_init(self):
+        """Code to actually extract format-specific metadata goes here."""
         raise NotImplementedError("Cannot instantiate abstract class")
 
     def _xml_escape(self, instr):
+        """Perform basic XML escaping on the provided string."""
         return instr.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
 
     def render(self):
@@ -336,21 +359,25 @@ def formatFileSize(size,unit='',precision=0):
 
     return '%.*f %s' % (precision,size,units[unit_idx])
 
-def list_content():
+def list_content(path='.'):
     """Generate an HTML listing of the available files, complete with metadata"""
-    import glob
+    scripts, categories, path = [], [], os.path.abspath(path)
 
-    scripts = []
-    for name in os.listdir('.'):
-        ext = os.path.splitext(name)[1]
-        for ec in entryClasses:
-            if ext in ec.extensions:
-                scripts.append(ec(name))
-                continue
+    for name in os.listdir(os.path.abspath(path)):
+        fpath = os.path.join(path, name)
 
-            lineOne = file(name).readline()
-            if ec.shabang_re.match(lineOne):
-                scripts.append(ec(name))
+        if os.path.isdir(fpath):
+            pass #TODO: Support categories.
+        else:
+            ext = os.path.splitext(name)[1]
+            for ec in entryClasses:
+                if ext in ec.extensions:
+                    scripts.append(ec(name))
+                    continue
+
+                lineOne = file(name).readline()
+                if ec.shabang_re.match(lineOne):
+                    scripts.append(ec(name))
     scripts.sort()
 
     print PAGE_HEADER
@@ -358,6 +385,10 @@ def list_content():
     for entry in scripts:
         print "<li><a href='#%s'>%s</a></li>" % (entry.metadata['anchor'], entry.metadata['name'])
     print "</ol><hr><a href='/' class='backlink'>Back to Main Site</a></div>"
+
+    if categories:
+        print "<h2>Categories</h2>" #TODO: Add this to the table of contents.
+
     for entry in scripts:
         print entry.render()
     print PAGE_FOOTER

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 A convenience wrapper for building and installing a new kernel on Gentoo
 Linux, complete with some extra bits to make maintaining a couple of
@@ -23,7 +24,18 @@ TODO:
 - Better instructions. Possibly a zip bundle with a README
 """
 
+__appname__ = "install_kernel.py"
+__author__  = "Stephan Sokolow (deitarion/SSokolow)"
+__version__ = "0.2"
+__license__ = "GNU GPL 2.0 or later"
+
 import os, shutil, sys, time
+from optparse import OptionParser
+
+parser = OptionParser(version="%%prog v%s" % __version__)
+parser.add_option('--skip-external-rebuilds', action="store_false", dest="mod_rebuild",
+    default=True, help="Don't call module-rebuild")
+opts, args = parser.parse_args()
 
 kern_src = "/usr/src/linux"
 kern_rel = os.path.join(kern_src,"include/config/kernel.release")
@@ -40,13 +52,13 @@ def die(msg, code=1):
 
 os.chdir(kern_src)
 print "Making kernel"
-os.system("make")
+os.system("make > /dev/null")
 
 print "Mounting /boot"
 os.system('mount "%s"' % kern_root)
 
 print "Installing kernel modules for %s" % file(kern_rel).read().strip()
-os.system("make modules_install")
+os.system("make modules_install > /dev/null")
 
 for path in (kern_main, kern_backup, kern_emergency):
 	if not os.path.exists(os.path.join(kern_root,path)):
@@ -71,10 +83,10 @@ shutil.copy(kern_rel, os.path.join(kern_main, 'release'))
 print "Unmounting /boot"
 os.system('umount "%s"' % kern_root)
 
-print "Regenerating external kernel modules"
-for i in range(0,5):
-	time.sleep(1)
-	sys.stdout.write(".\a\t")
-print
-os.system('module-rebuild populate')
-os.system('module-rebuild rebuild')
+if opts.mod_rebuild:
+    print "Regenerating external kernel modules"
+    for x in range(0,5):
+        time.sleep(1)
+        print ".",
+    os.system('module-rebuild populate')
+    os.system('module-rebuild rebuild')
