@@ -60,7 +60,9 @@ PAGE_HEADER = """Content-Type: text/html; charset=utf-8
                 color: black;
                 background-color: #eeeeee;
                 padding: 1em;
+                border-radius: 1em;
                 -moz-border-radius: 1em;
+                -webkit-border-radius: 1em;
                 width: 50em;
             }
 
@@ -96,6 +98,22 @@ PAGE_HEADER = """Content-Type: text/html; charset=utf-8
                 padding: 1ex;
                 text-align: center;
             }
+
+            .info, .alert {
+                margin: 1ex;
+                padding: 1ex;
+                border-radius: 0.5ex;
+                -moz-border-radius: 0.5ex;
+                -webkit-border-radius: 0.5ex;
+            }
+            .info {
+                border: 1px solid blue;
+                background-color: #eeeeff;
+            }
+            .alert {
+                border: 1px solid red;
+                background-color: #ffdddd;
+            }
         </style>
 
     </head>
@@ -106,10 +124,11 @@ PAGE_HEADER = """Content-Type: text/html; charset=utf-8
                 haven't had time to clean up for general use. Feel free to use
                 them if you like. Unless otherwise stated, they're licensed under
                 the GNU GPL version 2 or later.</p>
-            <b>Note:</b> My multi-file projects may be found on my
+            <div class="info"><strong>Note:</strong> My multi-file projects may be found on my
             <a href="http://github.com/ssokolow">GitHub</a> and
             <a href="https://launchpad.net/~ssokolow/+related-software">Launchpad</a>
-            profiles.
+            profiles.</div>
+            <div id="quicktile.py" class="alert"><strong>Note:</strong> quicktile.py has moved to <a href="http://github.com/ssokolow/quicktile/tree/master">GitHub</a></div>
         </div>
 """
 
