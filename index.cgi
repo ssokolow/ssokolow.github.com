@@ -122,11 +122,10 @@ PAGE_HEADER = """Content-Type: text/html; charset=utf-8
             <h1>Useful Hacks</h1>
             <p>This page lists scripts I quickly hacked up to solve a problem but
                 haven't had time to clean up for general use. Feel free to use
-                them if you like. Unless otherwise stated, they're licensed under
-                the GNU GPL version 2 or later.</p>
+                them if you like.</p>
             <div class="info"><strong>Note:</strong> My multi-file projects may be found on my
-            <a href="http://github.com/ssokolow">GitHub</a> and
-            <a href="https://launchpad.net/~ssokolow/+related-software">Launchpad</a>
+            <a rel="me" href="http://github.com/ssokolow">GitHub</a> and
+            <a rel="me" href="https://launchpad.net/~ssokolow/+related-software">Launchpad</a>
             profiles.</div>
             <div id="quicktile.py" class="alert"><strong>Note:</strong> quicktile.py has moved to <a href="http://github.com/ssokolow/quicktile/tree/master">GitHub</a></div>
         </div>
