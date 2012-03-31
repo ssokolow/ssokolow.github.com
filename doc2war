@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-A simple little script to convert Microsoft Word files into Konqueror .war 
+A simple little script to convert Microsoft Word files into Konqueror .war
 archives (an HTML file and it's dependencies inside a renamed .tar file)
 using wvHtml.
 
@@ -39,7 +39,7 @@ if __name__ == "__main__" and len(sys.argv) > 1:
 			else:
 				print "!! Could not convert " + filename
 				print "wvHtml was unable to read the given file"
-		
+
 		shutil.rmtree(dirname)
 		if [x for x in ('.war', '.html') if os.path.exists(warbase + x)]:
 			print "-- Deleting " + filename
