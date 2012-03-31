@@ -34,7 +34,22 @@ import cgi, os, parser, re, time, token, urllib
 DEFAULT_LICENSE = "GNU GPL 2.0 or newer"
 
 LICENSES = {
-        re.compile("(^|\b)((GNU )?GPL v?2(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/gpl-2.0.html"
+        re.compile("(^|\b)((GNU )?(A|Affero )(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/agpl-3.0.html",
+        re.compile("(^|\b)((GNU )?(General Public License|GPL)[ ]?v?2(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/gpl-2.0.html",
+        re.compile("(^|\b)((GNU )?(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/gpl-3.0.html",
+        re.compile("(^|\b)((GNU )?(L|Lesser |Library )(General Public License|GPL)[ ]?v?2\.1)", re.IGNORECASE) : "http://www.gnu.org/licenses/lgpl-2.1.html",
+        re.compile("(^|\b)((GNU )?(L|Lesser |Library )(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/lgpl-3.0.html",
+        re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?1\.1)", re.IGNORECASE) : "https://www.mozilla.org/MPL/1.1/",
+        re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?2(\.0)?)", re.IGNORECASE) : "https://www.mozilla.org/MPL/2.0/",
+        re.compile("(^|\b)(Apache (License )?v?2(\.0)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/apache2.0.php",
+        re.compile("(^|\b)(Artistic (License)?v?2(\.0)?)", re.IGNORECASE) : "http://www.perlfoundation.org/artistic_license_2_0",
+        re.compile("(^|\b)(PSF (License )?(\d\.\d)?)", re.IGNORECASE) : "http://docs.python.org/license.html",
+        re.compile("(^|\b)((Old|Original|4-clause)[ ]?BSD( License)?)", re.IGNORECASE) : "https://en.wikipedia.org/wiki/BSD_licenses#4-clause_license_.28original_.22BSD_License.22.29",
+        re.compile("(^|\b)((New|Modified|3-clause)[ ]?BSD( License)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/BSD-3-Clause",
+        re.compile("(^|\b)((2-clause |Simplified |Free)BSD( License)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/BSD-2-Clause",
+        re.compile("(^|\b)((MIT|X11)( License)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/MIT",
+        re.compile("(^|\b)((Eclipse Public License|EPL)[ ]?v?1?(\.0)?)", re.IGNORECASE) : "http://www.eclipse.org/legal/epl-v10.html"
+
         }
 
 HTACCESS = """
