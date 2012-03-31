@@ -1,0 +1,4 @@
+
+Options -ExecCGI
+SetHandler default-handler
+DirectoryIndex index.html
