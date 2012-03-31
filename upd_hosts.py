@@ -16,9 +16,10 @@ TODO:
   /etc/hosts.local
 """
 
-MVPS_URL = 'http://www.mvps.org/winhelp2002/hosts.txt'
+MVPS_URL = 'http://winhelp2002.mvps.org/hosts.txt'
 LOCAL_HOSTS = '/etc/hosts.local'
-ADHOST_SUFFIX_WHITELIST = ['.projectwonderful.com']
+TARGET_HOSTS = '/etc/hosts'
+ADHOST_SUFFIX_WHITELIST = ['.projectwonderful.com', 'piwik.org']
 
 import os, sys, urllib2
 
@@ -33,24 +34,34 @@ def checkStart(line):
         if line.endswith(suffix.strip()):
             return False # Don't block whitelisted servers
 
-	for prefix in ('127.0.0.1 ', '127.0.0.1\t', '#'):
-		if not line or line.strip().startswith(prefix):
-			return True # Allow 127.0.0.1 lines, comments, and blank lines.
-	return False # Block everything else.
+    for prefix in ('127.0.0.1 ', '127.0.0.1\t', '#'):
+        if not line or line.strip().startswith(prefix):
+            return True # Allow 127.0.0.1 lines, comments, and blank lines.
+    return False # Block everything else.
 
-# Retrieve the MVPS hosts file and play it safe
-# by filtering out any non-127.0.0.1, non-comment lines.
-adhosts_raw = urllib2.urlopen(MVPS_URL).read().strip().replace('\r','').split('\n')
-adhosts = [x for x in adhosts_raw if checkStart(x)]
+if os.geteuid() == 0:
+    # Retrieve the MVPS hosts file and play it safe
+    # by filtering out any non-127.0.0.1, non-comment lines.
+    adhosts_raw = urllib2.urlopen(MVPS_URL).read().strip().replace('\r','').split('\n')
+    adhosts = [x for x in adhosts_raw if checkStart(x)]
 
-# Load the local hosts file from /etc/hosts.local
-if os.path.exists(LOCAL_HOSTS):
-	localhosts = file(LOCAL_HOSTS,'rU').read().strip().split('\n')
+    # integrate local definitions if this is the first time we're being run
+    if os.path.exists(TARGET_HOSTS) and not os.path.exists(LOCAL_HOSTS):
+        os.rename(TARGET_HOSTS, LOCAL_HOSTS)
+
+    # Load the local hosts file from /etc/hosts.local
+    if os.path.exists(LOCAL_HOSTS):
+        localhosts = file(LOCAL_HOSTS,'rU').read().strip().split('\n')
+    else:
+        localhosts = []
+
+    warning = ["# WARNING: This file was auto-generated.",
+    "Please edit /etc/hosts.local and run %s instead" % os.path.split(sys.argv[0])[1]]
+
+    output = '\n'.join(warning + [''] + localhosts + [''] + adhosts)
+
+    # Write the new stuff to /etc/hosts
+    file(TARGET_HOSTS,'w').write(output)
 else:
-	localhosts = []
-
-warning = ["# WARNING: This file was auto-generated.",
-"Please edit /etc/hosts.local and run %s instead" % os.path.split(sys.argv[0])[1]]
-
-# Write the new stuff to /etc/hosts
-file('/etc/hosts','w').write('\n'.join(warning + [''] + localhosts + [''] + adhosts))
+    print "Re-calling via sudo to gain root privileges..."
+    os.execvp('sudo', ['sudo', str(__file__)])
