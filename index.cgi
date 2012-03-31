@@ -95,6 +95,9 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
                 text-align: center;
             }
 
+            @media (max-width: 995px) {
+                .menu { position: absolute; }
+            }
 
             div.header { margin-right: 20em; }
             div.footer {
