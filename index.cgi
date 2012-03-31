@@ -50,25 +50,51 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
         <title>Useful Hacks @ ssokolow.com</title>
 
         <style type="text/css">
+            body { font-family: sans-serif; }
+            p { margin: 1ex; }
+
             h2 {
                 border-bottom: 2px solid black;
-                padding-left: 1ex;
+                margin-left: 0.5ex;
+                padding-left: 0.3ex;
             }
-            a { text-decoration: none; }
+            a {
+                text-decoration: none;
+                color: #0000EE;
+            }
             a:hover { text-decoration: underline; }
+            a:visited { color: #800080; }
 
-            .docstring {
+            pre, .generated, .attr_list, .filename {
+                font-family: "DejaVu Sans Mono", "Liberation Mono", "Andale Mono", "Droid Sans Mono", monospace;
+                font-size: 80% !important;
+            }
+
+            .to_projects {
+                font-size: 60%;
+                vertical-align: middle;
+            }
+
+            pre {
                 margin-left: 1em;
                 margin-right: 1em;
-                border: 1px solid gray;
-                color: black;
-                background-color: #eeeeee;
+                box-shadow: 2px 3px 5px black inset, 2px 2px 2px #888;
+                color: #0E0;
+                background-color: #000;
                 padding: 1em;
                 border-radius: 1em;
                 -moz-border-radius: 1em;
                 -webkit-border-radius: 1em;
                 width: 50em;
+                clear: right;
+                overflow-x: scroll;
             }
+            pre a, pre a:visited {
+                color: #0F0;
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            pre a:visited { font-style: italic; }
 
             .attr_list {
                 list-style-type: none;
@@ -95,8 +121,11 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
                 text-align: center;
             }
 
-            @media (max-width: 995px) {
-                .menu { position: absolute; }
+            @media (max-width: 965px) {
+                .menu {
+                    position: static;
+                    float: right;
+                }
             }
 
             div.header { margin-right: 20em; }
@@ -107,7 +136,6 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
             }
 
             .info, .alert {
-                margin: 1ex;
                 padding: 1ex;
                 border-radius: 0.5ex;
                 -moz-border-radius: 0.5ex;
@@ -125,20 +153,21 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
 
     </head>
     <body>
+"""
+
+BODY_HEADER = """
         <div class="header">
-            <h1>Useful Hacks</h1>
+            <h1>Useful Hacks <span class="to_projects">[<a rel="me" href="http://github.com/ssokolow">Projects</a>]</span></h1>
             <p>This page lists scripts I quickly hacked up to solve a problem but
                 haven't had time to clean up for general use. Feel free to use
                 them if you like.</p>
-            <div class="info"><strong>Note:</strong> My multi-file projects may be found on my
-            <a rel="me" href="http://github.com/ssokolow">GitHub profile</a>.</div>
-            <div id="quicktile.py" class="alert"><strong>Note:</strong> quicktile.py is now available as <a href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a> on GitHub.</div>
+            <p id="quicktile.py" class="alert"><strong>Note:</strong> <span class="filename">quicktile.py</span> is now available as <a class="filename" href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a> on GitHub.</div>
         </div>
 """
 
 PAGE_FOOTER = """
 <div class='footer'>
-    """ + time.strftime("This page generated at %Y-%m-%d %H:%M UTC", time.gmtime()) + """
+    <span class='generated'>""" + time.strftime("This page generated at %Y-%m-%d %H:%M UTC", time.gmtime()) + """</span>
 </div>
 <!-- Piwik -->
 <script type="text/javascript">
@@ -261,8 +290,12 @@ class ScriptEntry(object):
         else:
             self.metadata['get_url'] = '?get=' + self.metadata['fname_q']
 
-        output = """<h2 id="%(anchor)s">
-                <a href='%(get_url)s'>%(name)s</a>
+        output = '<h2 id="%(anchor)s"><a ' % self.metadata
+
+        if self.metadata['name'] == self.metadata['filename']:
+            output += 'class="filename" '
+
+        output += """href='%(get_url)s'>%(name)s</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> %(fsize_p)s</li>""" % self.metadata
@@ -272,7 +305,7 @@ class ScriptEntry(object):
                 <li><span class="key">Language:</span> %(language)s</li>
                 <li><span class="key">Last Modified:</span> %(mtime)s</li>
             </ul>
-            <pre class='docstring'>%(desc_e)s</pre>""" % self.metadata
+            <pre>%(desc_e)s</pre>""" % self.metadata
         return output
 
 class PythonScriptEntry(ScriptEntry):
@@ -414,8 +447,16 @@ def list_content(path='.', offline=False):
     output = [PAGE_HEADER]
     output.append("<div class='menu'><h2>Table of Contents</h2><ol>")
     for entry in scripts:
-        output.append("<li><a href='#%s'>%s</a></li>" % (entry.metadata['anchor'], entry.metadata['name']))
-    output.append("</ol><hr><a href='/' class='backlink'>Back to Main Site</a></div>")
+        tmp = '<li><a '
+
+        #FIXME: De-duplicate this check. Do it properly.
+        if entry.metadata['name'] == entry.metadata['filename']:
+            tmp += 'class="filename" '
+
+        tmp += "href='#%s'>%s</a></li>" % (entry.metadata['anchor'], entry.metadata['name'])
+        output.append(tmp)
+    output.append("</ol><hr><a href='..' class='backlink'>Back to Parent Site</a></div>")
+    output.append(BODY_HEADER)
 
     if categories:
         output.append("<h2>Categories</h2>") #TODO: Add this to the table of contents.
