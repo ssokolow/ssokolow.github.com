@@ -1,0 +1,12 @@
+RedirectPermanent /List_of_GenderBending http://gbindex.ssokolow.com/
+RedirectPermanent /ContactMe http://blog.ssokolow.com/contact/
+
+<Files index.html>
+    Header set X-XRDS-Location "http://www.myopenid.com/xrds?username=ssokolow.myopenid.com"
+</Files>
+
+<Files yadis.xml>
+    # Make sure that Apache serves the YADIS services document as the
+    # correct content-type.
+    ForceType application/xrds+xml
+</Files>
