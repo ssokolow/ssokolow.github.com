@@ -37,9 +37,12 @@ LICENSES = {
         re.compile("(^|\b)((GNU )?GPL v?2(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/gpl-2.0.html"
         }
 
-PAGE_HEADER = """Content-Type: text/html; charset=utf-8
+HTACCESS = """
+Options -ExecCGI
+SetHandler default-handler
+"""
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
@@ -247,9 +250,14 @@ class ScriptEntry(object):
         """Perform basic XML escaping on the provided string."""
         return instr.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
 
-    def render(self):
+    def render(self, offline=False):
+        if offline:
+            self.metadata['get_url'] = self.metadata['filename']
+        else:
+            self.metadata['get_url'] = '?get=' + self.metadata['fname_q']
+
         output = """<h2 id="%(anchor)s">
-                <a href='?get=%(fname_q)s'>%(name)s</a>
+                <a href='%(get_url)s'>%(name)s</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> %(fsize_p)s</li>""" % self.metadata
@@ -377,7 +385,7 @@ def formatFileSize(size,unit='',precision=0):
 
     return '%.*f %s' % (precision,size,units[unit_idx])
 
-def list_content(path='.'):
+def list_content(path='.', offline=False):
     """Generate an HTML listing of the available files, complete with metadata"""
     scripts, categories, path = [], [], os.path.abspath(path)
 
@@ -398,31 +406,50 @@ def list_content(path='.'):
                     scripts.append(ec(name))
     scripts.sort()
 
-    print PAGE_HEADER
-    print "<div class='menu'><h2>Table of Contents</h2><ol>"
+    output = [PAGE_HEADER]
+    output.append("<div class='menu'><h2>Table of Contents</h2><ol>")
     for entry in scripts:
-        print "<li><a href='#%s'>%s</a></li>" % (entry.metadata['anchor'], entry.metadata['name'])
-    print "</ol><hr><a href='/' class='backlink'>Back to Main Site</a></div>"
+        output.append("<li><a href='#%s'>%s</a></li>" % (entry.metadata['anchor'], entry.metadata['name']))
+    output.append("</ol><hr><a href='/' class='backlink'>Back to Main Site</a></div>")
 
     if categories:
-        print "<h2>Categories</h2>" #TODO: Add this to the table of contents.
+        output.append("<h2>Categories</h2>") #TODO: Add this to the table of contents.
 
     for entry in scripts:
-        print entry.render()
-    print PAGE_FOOTER
+        output.append(entry.render(offline=offline))
+    output.append(PAGE_FOOTER)
+
+    return '\n'.join(output)
 
 if __name__ == '__main__':
-    form = cgi.FieldStorage()
-    if not form.has_key("get"):
-        list_content()
+    from optparse import OptionParser
+    opt_parser = OptionParser(description=__doc__, version="%%prog v%s" % __version__)
+    opt_parser.add_option('--offline', action="store_true", dest="offline",
+        default=False, help="Generate a static index.html and .htaccess")
+
+    opts, args = opt_parser.parse_args()
+
+    if opts.offline:
+        with open('index.html', 'w') as fh:
+            fh.write(list_content(offline=True))
+        with open('.htaccess', 'w') as fh:
+            fh.write(HTACCESS)
     else:
-        fname = os.path.normpath(form['get'].value)
-        if not os.path.abspath(fname).startswith(os.getcwd()) or not os.path.isfile(fname):
-            print PAGE_HEADER
-            print "<p>Unfortunately, you have requested an invalid file. Please <a href='?'>try again</a>.</p>"
-            print PAGE_FOOTER
-        else:
-            print "Content-Type: text/plain"
+        form = cgi.FieldStorage()
+        if not form.has_key("get"):
+            print "Content-Type: text/html; charset=utf-8"
             print
-            print file(form['get'].value).read()
+            print list_content()
+        else:
+            fname = os.path.normpath(form['get'].value)
+            if not os.path.abspath(fname).startswith(os.getcwd()) or not os.path.isfile(fname):
+                print "Content-Type: text/html; charset=utf-8"
+                print
+                print PAGE_HEADER
+                print "<p>Unfortunately, you have requested an invalid file. Please <a href='?'>try again</a>.</p>"
+                print PAGE_FOOTER
+            else:
+                print "Content-Type: text/plain"
+                print
+                print file(form['get'].value).read()
 
