@@ -102,7 +102,7 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
                 -webkit-border-radius: 1em;
                 width: 50em;
                 clear: right;
-                overflow-x: scroll;
+                overflow-x: auto;
             }
             pre a, pre a:visited {
                 color: #0F0;
