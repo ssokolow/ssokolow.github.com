@@ -430,6 +430,9 @@ if __name__ == '__main__':
     opt_parser.add_option('--offline', action="store_true", dest="offline",
         default=False, help="Generate a static index.html and .htaccess")
 
+    # Allow pre-formatted descriptions
+    opt_parser.formatter.format_description = lambda description: description
+
     opts, args = opt_parser.parse_args()
 
     if opts.offline:
