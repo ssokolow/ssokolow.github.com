@@ -40,6 +40,7 @@ LICENSES = {
 HTACCESS = """
 Options -ExecCGI
 SetHandler default-handler
+DirectoryIndex index.html
 """
 
 PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
