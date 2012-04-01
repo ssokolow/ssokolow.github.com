@@ -22,6 +22,7 @@ Warnings:
 TODO:
 - Switch to a proper templating solution? (No longer a single-file script)
 - Add caching eventually (current run time for my site, 0.1 seconds)
+- Add a 5px inset border and subtle "rounded CRT glare" gradients to <pre>
 """
 
 __appname__ = "Lazybones Script Lister"
@@ -152,17 +153,14 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
 
             .info, .alert {
                 padding: 1ex;
-                border-radius: 0.5ex;
-                -moz-border-radius: 0.5ex;
-                -webkit-border-radius: 0.5ex;
+                box-shadow: 2px 2px 1px #ddd;
+                display: inline-block;
             }
             .info {
-                border: 1px solid blue;
-                background-color: #eeeeff;
+                background-color: #ffa;
             }
             .alert {
-                border: 1px solid red;
-                background-color: #ffdddd;
+                background-color: #fdd;
             }
         </style>
 

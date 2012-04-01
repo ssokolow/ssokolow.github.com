@@ -92,17 +92,14 @@
 
             .info, .alert {
                 padding: 1ex;
-                border-radius: 0.5ex;
-                -moz-border-radius: 0.5ex;
-                -webkit-border-radius: 0.5ex;
+                box-shadow: 2px 2px 1px #ddd;
+                display: inline-block;
             }
             .info {
-                border: 1px solid blue;
-                background-color: #eeeeff;
+                background-color: #ffa;
             }
             .alert {
-                border: 1px solid red;
-                background-color: #ffdddd;
+                background-color: #fdd;
             }
         </style>
 
@@ -426,6 +423,7 @@ Warnings:
 TODO:
 - Switch to a proper templating solution? (No longer a single-file script)
 - Add caching eventually (current run time for my site, 0.1 seconds)
+- Add a 5px inset border and subtle "rounded CRT glare" gradients to &lt;pre&gt;
 """</pre>
 <h2 id="rar.py"><a class="filename" href='rar.py'>rar.py</a>
             </h2>
@@ -551,7 +549,7 @@ TODO:
 # with the working directory they expect.</pre>
 
 <div class='footer'>
-    <span class='generated'>This page generated at 2012-03-31 15:15 UTC</span>
+    <span class='generated'>This page generated at 2012-04-01 12:34 UTC</span>
 </div>
 <!-- Piwik -->
 <script type="text/javascript">
