@@ -65,23 +65,30 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
     <head>
         <title>Useful Hacks @ ssokolow.com</title>
 
+        <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
         <style type="text/css">
             body { font-family: sans-serif; }
             p { margin: 1ex; }
+
+            h1, .menu h2, .menu .backlink, h2 .filename { font-family: 'Play', sans-serif; }
+            h2 .filename { font-family: 'Play', "DejaVu Sans Mono", "Liberation Mono", "Andale Mono", "Droid Sans Mono", monospace; }
 
             h2 {
                 border-bottom: 2px solid black;
                 margin-left: 0.5ex;
                 padding-left: 0.3ex;
             }
-            a {
+            a:link {
                 text-decoration: none;
                 color: #0000EE;
             }
             a:hover { text-decoration: underline; }
             a:visited { color: #800080; }
 
-            pre, .generated, .attr_list, .filename {
+            .entry h2 { font-size: 2.2ex; }
+            .entry { padding-bottom: 1ex; }
+
+            pre, .generated, .attr_list, p .filename, .menu .filename {
                 font-family: "DejaVu Sans Mono", "Liberation Mono", "Andale Mono", "Droid Sans Mono", monospace;
                 font-size: 80% !important;
             }
@@ -303,7 +310,7 @@ class ScriptEntry(object):
         else:
             self.metadata['get_url'] = '?get=' + self.metadata['fname_q']
 
-        output = '<h2 id="%(anchor)s"><a ' % self.metadata
+        output = '<div class="entry"><h2 id="%(anchor)s"><a ' % self.metadata
 
         if self.metadata['name'] == self.metadata['filename']:
             output += 'class="filename" '
@@ -318,7 +325,7 @@ class ScriptEntry(object):
                 <li><span class="key">Language:</span> %(language)s</li>
                 <li><span class="key">Last Modified:</span> %(mtime)s</li>
             </ul>
-            <pre>%(desc_e)s</pre>""" % self.metadata
+            <pre>%(desc_e)s</pre></div>""" % self.metadata
         return output
 
 class PythonScriptEntry(ScriptEntry):

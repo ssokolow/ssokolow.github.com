@@ -4,23 +4,30 @@
     <head>
         <title>Useful Hacks @ ssokolow.com</title>
 
+        <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
         <style type="text/css">
             body { font-family: sans-serif; }
             p { margin: 1ex; }
+
+            h1, .menu h2, .menu .backlink, h2 .filename { font-family: 'Play', sans-serif; }
+            h2 .filename { font-family: 'Play', "DejaVu Sans Mono", "Liberation Mono", "Andale Mono", "Droid Sans Mono", monospace; }
 
             h2 {
                 border-bottom: 2px solid black;
                 margin-left: 0.5ex;
                 padding-left: 0.3ex;
             }
-            a {
+            a:link {
                 text-decoration: none;
                 color: #0000EE;
             }
             a:hover { text-decoration: underline; }
             a:visited { color: #800080; }
 
-            pre, .generated, .attr_list, .filename {
+            .entry h2 { font-size: 2.2ex; }
+            .entry { padding-bottom: 1ex; }
+
+            pre, .generated, .attr_list, p .filename, .menu .filename {
                 font-family: "DejaVu Sans Mono", "Liberation Mono", "Andale Mono", "Droid Sans Mono", monospace;
                 font-size: 80% !important;
             }
@@ -132,7 +139,7 @@
             <p id="quicktile.py" class="alert"><strong>Note:</strong> <span class="filename">quicktile.py</span> is now available as <a class="filename" href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a> on GitHub.</div>
         </div>
 
-<h2 id="active_corners.py"><a class="filename" href='active_corners.py'>active_corners.py</a>
+<div class="entry"><h2 id="active_corners.py"><a class="filename" href='active_corners.py'>active_corners.py</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 7 KiB</li>
@@ -154,8 +161,8 @@ Requires: PyGTK, dbus-python (optional, default configuration only)
 (I may switch it to PyQt when I can spare the time)
 
 Some code based on the shaped window example from the PyGTK 2.x tutorial.
-"""</pre>
-<h2 id="doc2war"><a class="filename" href='doc2war'>doc2war</a>
+"""</pre></div>
+<div class="entry"><h2 id="doc2war"><a class="filename" href='doc2war'>doc2war</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 1 KiB</li><li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2.0</a> or newer</li>
@@ -169,8 +176,8 @@ using wvHtml.
 
 TODO:
 - Add a file magic check to identify and rename RTF files with .doc extensions.
-"""</pre>
-<h2 id="enc_ogg_flac.sh"><a class="filename" href='enc_ogg+flac.sh'>enc_ogg+flac.sh</a>
+"""</pre></div>
+<div class="entry"><h2 id="enc_ogg_flac.sh"><a class="filename" href='enc_ogg+flac.sh'>enc_ogg+flac.sh</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 833 bytes</li><li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2</a> or later</li>
@@ -185,8 +192,8 @@ TODO:
 # in one run Also normalizes the input file to avoid the need to do so twice
 # later on.
 #
-# Licensed under the GNU GPL 2 or later.</pre>
-<h2 id="fdupes_mp3.py"><a class="filename" href='fdupes_mp3.py'>fdupes_mp3.py</a>
+# Licensed under the GNU GPL 2 or later.</pre></div>
+<div class="entry"><h2 id="fdupes_mp3.py"><a class="filename" href='fdupes_mp3.py'>fdupes_mp3.py</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 2 KiB</li><li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2.0</a> or newer</li>
@@ -211,8 +218,8 @@ by empty lines. Status messages are sent to stderr.
 Warning: Seems to get stuck on .mpg files.
 
 Requires: sox
-"""</pre>
-<h2 id="fastdupes.py"><a href='fastdupes.py'>Find Dupes Fast</a>
+"""</pre></div>
+<div class="entry"><h2 id="fastdupes.py"><a href='fastdupes.py'>Find Dupes Fast</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 21 KiB</li>
@@ -286,8 +293,8 @@ multiple times on the command line or specifying a directory and its parent.)
  - Support displaying duplicated directory trees as single results.
  - Once ready, announce this in a comment at
    <a href="http://ubuntu.wordpress.com/2005/10/08/find-duplicate-copies-of-files/">http://ubuntu.wordpress.com/2005/10/08/find-duplicate-copies-of-files/</a>
-"""</pre>
-<h2 id="fuzzy_tray_clock.py"><a href='fuzzy_tray_clock.py'>Fuzzy Tray Clock</a>
+"""</pre></div>
+<div class="entry"><h2 id="fuzzy_tray_clock.py"><a href='fuzzy_tray_clock.py'>Fuzzy Tray Clock</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 1 KiB</li>
@@ -301,8 +308,8 @@ A simple clone of the KDE Fuzzy Clock widget for use in other desktops.
 The time appears as a tooltip if you hover your mouse over the tray icon.
 
 If you'd like additional levels of fuzziness, just ask.
-"""</pre>
-<h2 id="gif.py"><a class="filename" href='gif.py'>gif.py</a>
+"""</pre></div>
+<div class="entry"><h2 id="gif.py"><a class="filename" href='gif.py'>gif.py</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 12 KiB</li>
@@ -335,8 +342,8 @@ Changelog:
  - 0.2.1: 40% speed improvement (went from 15 to 9 seconds for 1000 images)
  - 0.2.0: Feature-complete
  - 0.1.0: Initial release
-"""</pre>
-<h2 id="install_kernel.py"><a class="filename" href='install_kernel.py'>install_kernel.py</a>
+"""</pre></div>
+<div class="entry"><h2 id="install_kernel.py"><a class="filename" href='install_kernel.py'>install_kernel.py</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 3 KiB</li>
@@ -367,8 +374,8 @@ Read the source for the rest of the details.
 TODO:
 - Should I have this regenerate the fbcondecor initrd?
 - Better instructions. Possibly a zip bundle with a README
-"""</pre>
-<h2 id="kde_gui_fixes.py"><a href='kde_gui_fixes.py'>KDE GUI Fixes</a>
+"""</pre></div>
+<div class="entry"><h2 id="kde_gui_fixes.py"><a href='kde_gui_fixes.py'>KDE GUI Fixes</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 8 KiB</li>
@@ -391,11 +398,11 @@ Some code based on the shaped window example from the PyGTK 2.x tutorial.
 
 TODO:
 - Merge this with another idea of mine and whip up a nice GUI for it.
-"""</pre>
-<h2 id="index.cgi"><a href='index.cgi'>Lazybones Script Lister</a>
+"""</pre></div>
+<div class="entry"><h2 id="index.cgi"><a href='index.cgi'>Lazybones Script Lister</a>
             </h2>
             <ul class="attr_list">
-                <li><span class="key">Size:</span> 19 KiB</li>
+                <li><span class="key">Size:</span> 20 KiB</li>
 <li><span class="key">Version:</span> 0.3</li>
 <li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2.0</a> or later</li>
                 <li><span class="key">Language:</span> Python</li>
@@ -424,8 +431,8 @@ TODO:
 - Switch to a proper templating solution? (No longer a single-file script)
 - Add caching eventually (current run time for my site, 0.1 seconds)
 - Add a 5px inset border and subtle "rounded CRT glare" gradients to &lt;pre&gt;
-"""</pre>
-<h2 id="rar.py"><a class="filename" href='rar.py'>rar.py</a>
+"""</pre></div>
+<div class="entry"><h2 id="rar.py"><a class="filename" href='rar.py'>rar.py</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 14 KiB</li>
@@ -460,8 +467,8 @@ patch it as necessary and plan a migration path. Otherwise, do the following:
    to extract compressed files::
     For reasions of patent, performance, and a general lack of motivation on the
     author's part, this module does not extract compressed files.
-"""</pre>
-<h2 id="scratchtray.py"><a href='ScratchTray.py'>ScratchTray</a>
+"""</pre></div>
+<div class="entry"><h2 id="scratchtray.py"><a href='ScratchTray.py'>ScratchTray</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 7 KiB</li><li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2</a> or later</li>
@@ -498,8 +505,8 @@ Known Bugs:
   (<a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/65203">http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/65203</a>)
 - Resizing the tray on resolution change is currently broken. I'll take a look
   at it soon.
-"""</pre>
-<h2 id="swab.py"><a class="filename" href='swab.py'>swab.py</a>
+"""</pre></div>
+<div class="entry"><h2 id="swab.py"><a class="filename" href='swab.py'>swab.py</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 2 KiB</li><li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2.0</a> or newer</li>
@@ -513,8 +520,8 @@ be mounted by DOSBox or CDEmu.
 
 TODO:
 - Optimize and, if necessary, rewrite in C.
-"""</pre>
-<h2 id="upd_hosts.py"><a class="filename" href='upd_hosts.py'>upd_hosts.py</a>
+"""</pre></div>
+<div class="entry"><h2 id="upd_hosts.py"><a class="filename" href='upd_hosts.py'>upd_hosts.py</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 2 KiB</li><li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2.0</a> or newer</li>
@@ -536,8 +543,8 @@ TODO:
   more often. (Perhaps also use the ZIP download to save bandwidth?)
 - Add a mode which doesn't require the local hosts file to be moved to
   /etc/hosts.local
-"""</pre>
-<h2 id="wine_run"><a class="filename" href='wine_run'>wine_run</a>
+"""</pre></div>
+<div class="entry"><h2 id="wine_run"><a class="filename" href='wine_run'>wine_run</a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> 186 bytes</li><li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2.0</a> or newer</li>
@@ -546,10 +553,10 @@ TODO:
             </ul>
             <pre>#!/bin/bash
 # A three-line wrapper script to allow double-clicked .exe files to be run
-# with the working directory they expect.</pre>
+# with the working directory they expect.</pre></div>
 
 <div class='footer'>
-    <span class='generated'>This page generated at 2012-04-01 12:34 UTC</span>
+    <span class='generated'>This page generated at 2012-04-01 13:31 UTC</span>
 </div>
 <!-- Piwik -->
 <script type="text/javascript">
