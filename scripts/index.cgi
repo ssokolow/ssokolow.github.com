@@ -42,7 +42,7 @@ LICENSES = {
         re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?1\.1)", re.IGNORECASE) : "https://www.mozilla.org/MPL/1.1/",
         re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?2(\.0)?)", re.IGNORECASE) : "https://www.mozilla.org/MPL/2.0/",
         re.compile("(^|\b)(Apache (License )?v?2(\.0)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/apache2.0.php",
-        re.compile("(^|\b)(Artistic (License)?v?2(\.0)?)", re.IGNORECASE) : "http://www.perlfoundation.org/artistic_license_2_0",
+        re.compile("(^|\b)(Artistic (License )?v?2(\.0)?)", re.IGNORECASE) : "http://www.perlfoundation.org/artistic_license_2_0",
         re.compile("(^|\b)(PSF (License )?(\d\.\d)?)", re.IGNORECASE) : "http://docs.python.org/license.html",
         re.compile("(^|\b)((Old|Original|4-clause)[ ]?BSD( License)?)", re.IGNORECASE) : "https://en.wikipedia.org/wiki/BSD_licenses#4-clause_license_.28original_.22BSD_License.22.29",
         re.compile("(^|\b)((New|Modified|3-clause)[ ]?BSD( License)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/BSD-3-Clause",
