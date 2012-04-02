@@ -181,7 +181,7 @@ BODY_HEADER = """
             <p>This page lists scripts I quickly hacked up to solve a problem but
                 haven't had time to clean up for general use. Feel free to use
                 them if you like.</p>
-            <p id="quicktile.py" class="alert"><strong>Note:</strong> <span class="filename">quicktile.py</span> is now available as <a class="filename" href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a> on GitHub.</div>
+            <p id="quicktile.py" class="alert"><strong>Note:</strong> <span class="filename">quicktile.py</span> is now available as <a class="filename" href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a> on GitHub.</p>
         </div>
 """
 
