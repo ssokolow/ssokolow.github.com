@@ -316,6 +316,8 @@ class ScriptEntry(object):
             output += 'class="filename" '
 
         output += """href='%(get_url)s'>%(name)s</a>
+            <a href="http://flattr.com/thing/414861/Stephan-Sokolow" style="vertical-align: middle">
+<img src="flattr_icon.png" alt="Flattr this" title="Flattr this" border="0" /></a>
             </h2>
             <ul class="attr_list">
                 <li><span class="key">Size:</span> %(fsize_p)s</li>""" % self.metadata
