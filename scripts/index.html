@@ -232,11 +232,11 @@ Requires: sox
 <img src="flattr_icon.png" alt="Flattr this" title="Flattr this" border="0" /></a>
             </h2>
             <ul class="attr_list">
-                <li><span class="key">Size:</span> 21 KiB</li>
-<li><span class="key">Version:</span> 0.3.5</li>
+                <li><span class="key">Size:</span> 22 KiB</li>
+<li><span class="key">Version:</span> 0.3.6</li>
 <li><span class="key">License:</span> <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU GPL 2.0</a> or later</li>
                 <li><span class="key">Language:</span> Python</li>
-                <li><span class="key">Last Modified:</span> 2011-10-07 22:43:54 UTC</li>
+                <li><span class="key">Last Modified:</span> 2012-06-15 21:49:55 UTC</li>
             </ul>
             <pre>"""
 Find Dupes Fast
@@ -246,64 +246,30 @@ Inspired by Dave Bolton's dedupe.py (<a href="http://davebolton.net/blog/?p=173"
 Reasonable Software's NoClone.
 
 A simple script which identifies duplicate files several orders of magnitude
-more quickly than fdupes by using smarter algorithms. Most importantly, rather
-than calculating the MD5 sums for all files with non-unique sizes, this script
-groups files by their size and then does incremental comparisons.
+more quickly than fdupes by using smarter algorithms.
 
-As such, files can be read in 4KiB chunks and the script will only read as many
-chunks as it needs in order to confirm that a file is unique. (There is no way
-to avoid reading the entire file if it does have duplicates)
+This script supports both comparison by SHA1 hash and, to eliminate the
+vanishingly-small but present risk of hash collisions, also supports exact
+file comparison.
 
-In addition, this script eliminates the tiny but present risk of hash collisions
-causing false positives by doing byte-by-byte comparison rather than hashing the
-files and then comparing hashes. This doesn't slow the process down because
-each chunk is only read from the disk once and duplicate-finding is an I/O-bound
-operation.
+(Exact comparison does a lot of seeking, so it will be significantly slower
+on a traditional hard drive, but will probably be noticeably faster on a
+solid-state drive since it reads files incrementally and can stop as soon as
+a difference is encountered.)
 
-Grouping by size is used to limit both the memory consumption and the number of
-open file handles when doing the byte-by-byte comparison.
+Grouping by size and doing a preliminary pass to compare file headers are both
+used to significantly reduce the amount of comparison necessary. This also
+serves to limit both the memory consumption and the number of open file
+handles when doing exact comparisons.
 
 Finally, unlike with fdupes, under no circumstances will the --delete option
 allow you to accidentally delete every copy of a file. (No --symlinks option is
 supported and this script will not be confused by specifying the same directory
 multiple times on the command line or specifying a directory and its parent.)
 
-@todo:
- - Decide what to do in the face of my discovery of <a href="https://github.com/sahib/rmlint">https://github.com/sahib/rmlint</a>
- - Rewrite this to put the grouping logic in a single groupByKey(paths, keymaker)
-   function.
- - As I understand it, fnmatch.fnmatch uses regexes internally and doesn't cache
-   them. Given how many times it gets called, I should try using re.compile with
-   fnmatch.translate instead.
- - When in hash comparison mode, skip the second comparison for files small
-   enough to be fully-compared by the header comparison.
- - Look into the performance effect of checking whether excludes contain
-   metacharacters and using simple string matching if they don't.
- - Group files by stat().st_ino to avoid reading from the same inode more than
-   once and to allow advanced handling of hardlinks in --delete mode.
-   - Offer a switch to automatically hardlink all duplicates found which share a
-     common partition.
- - Identify the ideal values for CHUNK_SIZE and HEAD_SIZE... or
-   how about dynamically tuning the read increment size based on the number of
-   files being compared and possibly the available RAM? (To minimize seeking)
-   block_size = min(max_block_size, max_consumption / file_count)
-   Maybe a 64K maximum block size, 4K minimum block size,  an an 8MB max
-   consumption? (subordinate to minimum block size when in conflict)
-   - Is there such a thing as a disk access profiler that I could use with this?
- - The result groups should be sorted by their first entry and the entries within
-   each group should be sorted too.
- - Confirm that the byte-by-byte comparison's short-circuit evaluation is working
-   properly and efficiently.
- - Run this through a memory profiler and look for obvious bloat to trim.
- - Look into possible solutions for pathological cases of thousands of files with
-   the same exact size and same pre-filter results. (File handle exhaustion)
- - Add a mode which caches hashes indexed by (path,size,mtime/ctime) so users can
-   trade away a bit of accuracy for a lot more speed.
- - Look into supporting gettext localization.
- - Support displaying duplicated directory trees as single results.
- - Once ready, announce this in a comment at
-   <a href="http://ubuntu.wordpress.com/2005/10/08/find-duplicate-copies-of-files/">http://ubuntu.wordpress.com/2005/10/08/find-duplicate-copies-of-files/</a>
-"""</pre></div>
+Note: This file has full Epydoc API documentation.
+
+[...]</pre></div>
 <div class="entry"><h2 id="fuzzy_tray_clock.py"><a href='fuzzy_tray_clock.py'>Fuzzy Tray Clock</a>
             <a href="http://flattr.com/thing/414861/Stephan-Sokolow" style="vertical-align: middle">
 <img src="flattr_icon.png" alt="Flattr this" title="Flattr this" border="0" /></a>
@@ -586,7 +552,7 @@ TODO:
 # with the working directory they expect.</pre></div>
 
 <div class='footer'>
-    <span class='generated'>This page generated at 2012-06-04 11:28 UTC</span>
+    <span class='generated'>This page generated at 2012-06-15 22:08 UTC</span>
 </div>
 <!-- Piwik -->
 <script type="text/javascript">
