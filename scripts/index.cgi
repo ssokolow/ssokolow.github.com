@@ -82,8 +82,9 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
                 text-decoration: none;
                 color: #0000EE;
             }
-            a:hover { text-decoration: underline; }
             a:visited { color: #800080; }
+            a:hover { text-decoration: underline; }
+            a:active { color: #e00; }
 
             .entry h2 { font-size: 2.2ex; }
             .entry { padding-bottom: 1ex; }
@@ -477,7 +478,7 @@ def list_content(path='.', offline=False):
 
         tmp += "href='#%s'>%s</a></li>" % (entry.metadata['anchor'], entry.metadata['name'])
         output.append(tmp)
-    output.append("</ol><hr><a href='..' class='backlink'>Back to Parent Site</a></div>")
+    output.append("</ol><hr><a href='..' class='backlink' rel='home'>Back to Parent Site</a></div>")
     output.append(BODY_HEADER)
 
     if categories:

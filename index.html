@@ -1,131 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Stephan Sokolow: The Site</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <meta http-equiv="Content-Style-Type" content="text/css">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
+
         <meta http-equiv="X-XRDS-Location" content="http://pip.verisignlabs.com/user/ssokolow/yadisxrds" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="language" content="en">
-        <meta name="viewport" content="width=device-width">
-        <link rel="icon" type="image/png" href="favicon.png" />
         <link rel="openid.server" href="http://pip.verisignlabs.com/server" />
         <link rel="openid.delegate" href="http://ssokolow.pip.verisignlabs.com" />
         <link rel="openid2.provider" href="http://pip.verisignlabs.com/server" />
         <link rel="openid2.local_id" href="http://ssokolow.pip.verisignlabs.com" />
-        <style type="text/css">
-            body { font-family: sans-serif; }
-            h1 { text-align: center; }
-            .head_seg { display: inline-block; }
+        <link rel="profile" href="http://microformats.org/profile/hcard">
 
-            .section {
-                margin: 1em;
-                padding: 1em;
-                border: 1px solid #d3d3d3;
-                background: #fafafa no-repeat 10px 10px;
-                border-radius: 2em;
-
-                min-width: 30%;
-                float: left;
-                clear: left;
-            }
-            .section:nth-child(even), .section.contact, .nfsn_badge {
-                float: right;
-                clear: right;
-            }
-            .section h2 { margin: 0 auto 1ex 0; }
-            .section h3 {
-                font-size: 100%;
-                margin: 0 0 0 1ex;
-            }
-            .section ul { margin-top: 0.5ex; }
-            .nfsn_badge {
-                margin: 0.5ex 2em;
-                font-size: 75%;
-                color: gray;
-            }
-
-            /*.section.contact { background-image: url(img/mail.svg); }*/
-
-            .inactive { color: gray; }
-        </style>
+        <link rel="stylesheet" type="text/css" href="base.css" />
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#accordion").accordion({
+                    collapsible: true,
+                    header: 'h2',
+                }).find('h2').css('cursor', 'pointer').first().click().blur();
+            });
+        </script>
+        <!--[if lt IE 9]>
+            <script src="js/html5.js"></script>
+        <![endif]-->
+        <noscript>
+            <style type="text/css">
+                #accordion section h2, #accordion section h2:hover { border-bottom: none; }
+                #accordion section h2+div { display: block; }
+            </style>
+        </noscript>
     </head>
     <body>
-        <h1>Stephan Sokolow: <span class="head_seg">The Site</span></h1>
-        <div class="sections">
-            <div class="section">
-                <h2>Fanfiction</h2>
-                <ul>
-                    <li><a href="https://dl.dropbox.com/u/14610481/story_ideas.html">Story Ideas</a></li>
-                    <li><a href="http://vffa.ficfan.org/">Vanished Fanfiction Archive</a></li>
-                </ul>
-                <h3>Reading Suggestions</h3>
-                <ul>
-                    <li><a href="http://blog.ssokolow.com/archives/category/general/otaku-stuff/">Reviews (Blog)</a></li>
-                    <li><a href="http://identi.ca/ssokolow">Micro-reviews</a>
-                        <a href="http://identi.ca/ssokolow"><img src="img/identica.png" alt="Identi.ca"></a>
-                        <a href="http://twitter.com/#!/deitarion"><img src="img/twitter.png" alt="Twitter"></a></li>
-                    <li><a href="http://www.ficfan.org/">Quote Randomizer</a></li>
-                    <li><a href="http://www.fanfiction.net/u/537536/deitarion_SSokolow">Fanfiction.net Faves</a></li>
-                    <li><a href="http://www.tthfanfic.org/authors.php?no=12426&amp;list=recommended">TtH Recommendations</a></li>
-                    <li><a href="http://gbindex.ssokolow.com/">Gender-Bending Index</a></li>
-                </ul>
-            </div>
-            <div class="section">
-                <h2>Programming</h2>
-                <ul>
-                    <li><a href="http://blog.ssokolow.com/archives/category/general/geek-stuff/">Articles (Blog)</a></li>
-                    <li><a href="http://careers.stackoverflow.com/ssokolow">Resumé/CV</a></li>
-                </ul>
-                <h3>My Creations</h3>
-                <ul>
-                    <li><a href="http://github.com/ssokolow">GitHub</a></li>
-                    <li><a href="https://gist.github.com/ssokolow">Snippets (Gists)</a>
-                    <li><a href="scripts/index.html">Rough Scripts</a>
-                    <li><a href="http://ssokolow.tiddlyspace.com/">TiddlyWiki Plugins</a></li>
-                    <li><a href="http://userstyles.org/users/17680">Userstyles</a></li>
-                    <li><a href="http://www.ssokolow.com/scripts/index.html">Useful Hacks</a></li>
-                </ul>
-            </div>
-            <div class="section">
-                <h2>Writing</h2>
-                <ul>
-                    <li><a href="http://blog.ssokolow.com/archives/category/general/writing/">On Writing (Blog)</a></li>
-                    <li><span class="inactive">Story Ideas</span> (pending)</li>
-                    <li><span class="inactive">The Plotting Book</span> (pending)</li>
-                </ul>
-            </div>
-            <div class="section">
-                <h2>Linux/BSD</h2>
-                <ul>
-                    <li><a href="http://blog.ssokolow.com/archives/category/general/geek-stuff/">Articles (Blog)</a></li>
-                    <li><a href="https://gist.github.com/ssokolow">Snippets (Gists)</a>
-                </ul>
-            </div>
-            <div class="section contact">
-                <h2>Contact Me</h2>
-                <ul>
-                    <li><a href="http://blog.ssokolow.com/contact/">Mail Form</a></li>
-                </ul>
-            </div>
-            <div class="nfsn_badge">
-                a satisfied <a
-                    href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.NET</a>
-                customer and <a
-                    href="https://github.com/">GitHub</a> user.</a>
+        <div class="content">
+            <a href="http://ssokolow.com" rel="home" class="url uid qrcode"
+                ><img src="img/qr_url.png" alt="QR Code" title="http://ssokolow.com" /></a>
+            <section class="vcard">
+                <img class="photo" src="img/photo.jpg" alt="" />
+                <div class="cardbody">
+                    <h2 class="fn n"><span class="given-name">Stephan</span>
+                        <span class="family-name">Sokolow</span>
+                    </h2>
+                    <ul>
+                        <li><span class="block"><span class="role">Student</span> / <span class="title block">Geek For Hire</span></span></li>
+                        <li class="icons">
+                            <a class="url" href="https://github.com/ssokolow"
+                                title="ssokolow on GitHub" rel="me"><img
+                                src="img/github.png" alt="GitHub"
+                                width="16" height="16" /></a>
+                            <a class="url" href="https://www.delicious.com/ssokolow"
+                                title="ssokolow on delicious" rel="me"><img
+                                src="img/delicious.png" alt="Delicious"
+                                width="16" height="16" /></a>
+                            <a class="url" href="https://flattr.com/profile/ssokolow"
+                                title="ssokolow on Flattr" rel="me"><img
+                                src="img/flattr.png" alt="Flattr"
+                                width="16" height="16" /></a>
+                            <a class="url" href="https://twitter.com/deitarion"
+                                title="@deitarion on Twitter" rel="me"><img
+                                src="img/twitter.png" alt="Twitter"
+                                width="16" height="16" /></a>
+
+                            <address>
+                                <a class="url" href="http://identi.ca/ssokolow"
+                                    title="@ssokolow on Identi.ca" rel="me"><img
+                                    src="img/identica.png" alt="Identi.ca"
+                                    width="16" height="16" /></a>
+                                <a href="http://blog.ssokolow.com/contact/"
+                                    title="Spam-resistant e-mail form"
+                                    class="url" rel="me"><img
+                                    src="img/email.png" alt="E-Mail Form"
+                                    width="16" height="16" /></a>
+                                <!-- E-Mail icon from Silk Icons by Mark James.
+                                     Used under a CC-BY 3.0 license. -->
+                            </address>
+                        </li>
+                        <li><ul>
+                                <li><a class="url" rel="me" href="http://blog.ssokolow.com/">Blog</a></li>
+                                <li><a class="url" rel="me" href="http://careers.stackoverflow.com/ssokolow">Resum&#233; / CV</a></li>
+                        </ul></li>
+                    </ul>
+                    <a class="getlink" href="http://h2vx.com/vcf/ssokolow.com">
+                        Download <span class="extra_word">as</span> vCard</a>
+                    <div class="clear"></div>
+                </div>
+            </section>
+            <div id="accordion">
+                <section>
+                    <h2>Programming</h2>
+                    <div>
+                        <ul>
+                            <li><a href="http://blog.ssokolow.com/archives/category/general/geek-stuff/">Articles (Blog)</a></li>
+                        </ul>
+                        <h3>My Creations</h3>
+                        <ul>
+                            <li><a href="http://github.com/ssokolow">GitHub</a></li>
+                            <li><a href="https://gist.github.com/ssokolow">Snippets (Gists)</a>
+                            <li><a href="scripts/index.html">Rough Scripts</a>
+                            <li><a href="http://ssokolow.tiddlyspace.com/">TiddlyWiki Plugins</a></li>
+                            <li><a href="http://userstyles.org/users/17680">Userstyles</a></li>
+                            <li><a href="http://www.ssokolow.com/scripts/index.html">Useful Hacks</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Linux/BSD</h2>
+                    <div>
+                        <ul>
+                            <li><a href="http://blog.ssokolow.com/archives/category/general/geek-stuff/">Articles (Blog)</a></li>
+                            <li><a href="https://gist.github.com/ssokolow">Snippets (Gists)</a>
+                            </ul>
+                        </div>
+                </section>
+                <section>
+                    <h2>Fanfiction</h2>
+                    <div>
+                        <ul>
+                            <li><a rel="me" href="https://dl.dropbox.com/u/14610481/story_ideas.html">Story Ideas</a></li>
+                            <li><a href="http://vffa.ficfan.org/">Vanished Fanfiction Archive</a></li>
+                        </ul>
+                        <h3>Reading Suggestions</h3>
+                        <ul>
+                            <li><a href="http://blog.ssokolow.com/archives/category/general/otaku-stuff/">Reviews (Blog)</a></li>
+                            <li><a href="http://identi.ca/ssokolow">Micro-reviews</a>
+                                <a href="http://identi.ca/ssokolow"><img src="img/identica.png" alt="Identi.ca" /></a>
+                                <a href="http://twitter.com/deitarion"><img src="img/twitter.png" alt="Twitter" /></a></li>
+                            <li><a href="http://www.ficfan.org/">Quote Randomizer</a></li>
+                            <li><a href="http://www.fanfiction.net/u/537536/deitarion_SSokolow">Fanfiction.net Faves</a></li>
+                            <li><a href="http://www.tthfanfic.org/authors.php?no=12426&amp;list=recommended">TtH Recommendations</a></li>
+                            <li><a href="http://gbindex.ssokolow.com/">Gender-Bending Index</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Writing</h2>
+                    <div>
+                        <ul>
+                            <li><a href="http://blog.ssokolow.com/archives/category/general/writing/">On Writing (Blog)</a></li>
+                            <li><span class="inactive">Story Ideas</span> (pending)</li>
+                            <li><span class="inactive">The Plotting Book</span> (pending)</li>
+                        </ul>
+                    </div>
+                </section>
+                <div class="push"></div>
             </div>
         </div>
-        <!-- Piwik -->
-        <script type="text/javascript">
-            var pkBaseURL = (("https:" == document.location.protocol) ? "https://blog.ssokolow.com/stats/" : "http://blog.ssokolow.com/stats/");
-            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-            </script><script type="text/javascript">
+        <div class="footer">
+            <div class="nfsn_badge">
+                a satisfied <a
+                    href="https://www.nearlyfreespeech.net/"><img
+                    src="img/nfsn80x15logo.png" alt="NearlyFreeSpeech.NET" /></a>
+                <span class="extra_word">customer</span> and <a
+                    href="https://github.com/"><img src="img/github_name.png"
+                    alt="GitHub" /></a> user.
+            </div>
+            <!-- Piwik -->
+            <script type="text/javascript">
             try {
-                var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 5);
-                piwikTracker.trackPageView();
-                piwikTracker.enableLinkTracking();
+                var _paq = _paq || [];
+                (function(){
+                    var u=(("https:" == document.location.protocol) ? "https://blog.ssokolow.com/stats/" : "http://blog.ssokolow.com/stats/");
+                    _paq.push(['setSiteId', 4]);
+                    _paq.push(['setTrackerUrl', u+'piwik.php']);
+                    _paq.push(['trackPageView']);
+                    _paq.push(['enableLinkTracking']);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript';
+                    g.defer=true;
+                    g.async=true;
+                    g.src=u+'piwik.js';
+                    s.parentNode.insertBefore(g,s);
+                })();
             } catch( err ) {}
-        </script><noscript><p><img src="http://blog.ssokolow.com/stats/piwik.php?idsite=5" style="border:0" alt="" /></p></noscript>
-        <!-- End Piwik Tracking Code -->
+            </script><noscript><p><img src="http://blog.ssokolow.com/stats/piwik.php?idsite=5" style="border:0" alt="" /></p></noscript>
+            <!-- End Piwik Tracking Code -->
+        </div>
     </body>
 </html>
