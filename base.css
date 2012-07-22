@@ -42,14 +42,8 @@ h2 a:link, h2 a:visited {
     margin: 0;
     border-bottom: 1px dashed gray;
 }
-#accordion section h2:hover {
-    border-bottom-style: solid;
-}
-#accordion section h2 + div {
-    padding-top: 1ex;
-    /* Start collapsed. Unset by <noscript> */
-    display: none;
-}
+#accordion section h2:hover { border-bottom-style: solid; }
+#accordion section h2 + div { padding-top: 1ex; }
 
 /* Sticky Footer */
 * { margin: 0; }

@@ -20,9 +20,12 @@
         <script type="text/javascript">
             $(function() {
                 $("#accordion").accordion({
-                    collapsible: true,
                     header: 'h2',
-                }).find('h2').css('cursor', 'pointer').first().click().blur();
+                    collapsible: true,
+                    navigation: true,
+                    active: false,
+                    icons: false,
+                });
             });
         </script>
         <!--[if lt IE 9]>
@@ -31,7 +34,6 @@
         <noscript>
             <style type="text/css">
                 #accordion section h2, #accordion section h2:hover { border-bottom: none; }
-                #accordion section h2+div { display: block; }
             </style>
         </noscript>
     </head>
@@ -89,9 +91,9 @@
             </section>
             <img class="qrcode" src="img/qr_url.png" alt="" />
             <div id="accordion">
-                <section>
+                <section id="programming">
                     <h2><a href="#programming">Programming</a></h2>
-                    <div id="programming">
+                    <div>
                         <ul>
                             <li><a href="http://blog.ssokolow.com/archives/category/general/geek-stuff/">Articles (Blog)</a></li>
                         </ul>
@@ -106,18 +108,18 @@
                         </ul>
                     </div>
                 </section>
-                <section>
+                <section id="posix">
                     <h2><a href="#posix">Linux/BSD</a></h2>
-                    <div id="posix">
+                    <div>
                         <ul>
                             <li><a href="http://blog.ssokolow.com/archives/category/general/geek-stuff/">Articles (Blog)</a></li>
                             <li><a href="https://gist.github.com/ssokolow">Snippets (Gists)</a>
                             </ul>
                         </div>
                 </section>
-                <section>
+                <section id="fanfiction">
                     <h2><a href="#fanfiction">Fanfiction</a></h2>
-                    <div id="fanfiction">
+                    <div>
                         <ul>
                             <li><a rel="me" href="https://dl.dropbox.com/u/14610481/story_ideas.html">Story Ideas</a></li>
                             <li><a href="http://vffa.ficfan.org/">Vanished Fanfiction Archive</a></li>
@@ -135,9 +137,9 @@
                         </ul>
                     </div>
                 </section>
-                <section>
+                <section id="writing">
                     <h2><a href="#writing">Writing</a></h2>
-                    <div id="writing">
+                    <div>
                         <ul>
                             <li><a href="http://blog.ssokolow.com/archives/category/general/writing/">On Writing (Blog)</a></li>
                             <li><span class="inactive">Story Ideas</span> (pending)</li>
