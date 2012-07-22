@@ -112,7 +112,7 @@ a img { vertical-align: middle; }
     }
     .extra_word { display: none; }
 }
-@media all and (max-width: 610px) {
+@media all and (max-width: 620px) {
     .qrcode { display: none; }
 }
 
