@@ -36,23 +36,22 @@ from xml.sax.saxutils import escape as xml_escape
 DEFAULT_LICENSE = "GNU GPL 2.0 or newer"
 
 LICENSES = {
-        re.compile("(^|\b)((GNU )?(A|Affero )(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/agpl-3.0.html",
-        re.compile("(^|\b)((GNU )?(General Public License|GPL)[ ]?v?2(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/gpl-2.0.html",
-        re.compile("(^|\b)((GNU )?(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/gpl-3.0.html",
-        re.compile("(^|\b)((GNU )?(L|Lesser |Library )(General Public License|GPL)[ ]?v?2\.1)", re.IGNORECASE) : "http://www.gnu.org/licenses/lgpl-2.1.html",
-        re.compile("(^|\b)((GNU )?(L|Lesser |Library )(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE) : "http://www.gnu.org/licenses/lgpl-3.0.html",
-        re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?1\.1)", re.IGNORECASE) : "https://www.mozilla.org/MPL/1.1/",
-        re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?2(\.0)?)", re.IGNORECASE) : "https://www.mozilla.org/MPL/2.0/",
-        re.compile("(^|\b)(Apache (License )?v?2(\.0)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/apache2.0.php",
-        re.compile("(^|\b)(Artistic (License )?v?2(\.0)?)", re.IGNORECASE) : "http://www.perlfoundation.org/artistic_license_2_0",
-        re.compile("(^|\b)(PSF (License )?(\d\.\d)?)", re.IGNORECASE) : "http://docs.python.org/license.html",
-        re.compile("(^|\b)((Old|Original|4-clause)[ ]?BSD( License)?)", re.IGNORECASE) : "https://en.wikipedia.org/wiki/BSD_licenses#4-clause_license_.28original_.22BSD_License.22.29",
-        re.compile("(^|\b)((New|Modified|3-clause)[ ]?BSD( License)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/BSD-3-Clause",
-        re.compile("(^|\b)((2-clause |Simplified |Free)BSD( License)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/BSD-2-Clause",
-        re.compile("(^|\b)((MIT|X11)( License)?)", re.IGNORECASE) : "http://www.opensource.org/licenses/MIT",
-        re.compile("(^|\b)((Eclipse Public License|EPL)[ ]?v?1?(\.0)?)", re.IGNORECASE) : "http://www.eclipse.org/legal/epl-v10.html"
-
-        }
+        re.compile("(^|\b)((GNU )?(A|Affero )(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE): "http://www.gnu.org/licenses/agpl-3.0.html",
+        re.compile("(^|\b)((GNU )?(General Public License|GPL)[ ]?v?2(\.0)?)", re.IGNORECASE): "http://www.gnu.org/licenses/gpl-2.0.html",
+        re.compile("(^|\b)((GNU )?(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE): "http://www.gnu.org/licenses/gpl-3.0.html",
+        re.compile("(^|\b)((GNU )?(L|Lesser |Library )(General Public License|GPL)[ ]?v?2\.1)", re.IGNORECASE): "http://www.gnu.org/licenses/lgpl-2.1.html",
+        re.compile("(^|\b)((GNU )?(L|Lesser |Library )(General Public License|GPL)[ ]?v?3(\.0)?)", re.IGNORECASE): "http://www.gnu.org/licenses/lgpl-3.0.html",
+        re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?1\.1)", re.IGNORECASE): "https://www.mozilla.org/MPL/1.1/",
+        re.compile("(^|\b)((Mozilla Public License|MPL)[ ]?v?2(\.0)?)", re.IGNORECASE): "https://www.mozilla.org/MPL/2.0/",
+        re.compile("(^|\b)(Apache (License )?v?2(\.0)?)", re.IGNORECASE): "http://www.opensource.org/licenses/apache2.0.php",
+        re.compile("(^|\b)(Artistic (License )?v?2(\.0)?)", re.IGNORECASE): "http://www.perlfoundation.org/artistic_license_2_0",
+        re.compile("(^|\b)(PSF (License )?(\d\.\d)?)", re.IGNORECASE): "http://docs.python.org/license.html",
+        re.compile("(^|\b)((Old|Original|4-clause)[ ]?BSD( License)?)", re.IGNORECASE): "https://en.wikipedia.org/wiki/BSD_licenses#4-clause_license_.28original_.22BSD_License.22.29",
+        re.compile("(^|\b)((New|Modified|3-clause)[ ]?BSD( License)?)", re.IGNORECASE): "http://www.opensource.org/licenses/BSD-3-Clause",
+        re.compile("(^|\b)((2-clause |Simplified |Free)BSD( License)?)", re.IGNORECASE): "http://www.opensource.org/licenses/BSD-2-Clause",
+        re.compile("(^|\b)((MIT|X11)( License)?)", re.IGNORECASE): "http://www.opensource.org/licenses/MIT",
+        re.compile("(^|\b)((Eclipse Public License|EPL)[ ]?v?1?(\.0)?)", re.IGNORECASE): "http://www.eclipse.org/legal/epl-v10.html"
+}
 
 HTACCESS = """
 Options -ExecCGI
@@ -179,11 +178,16 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
 
 BODY_HEADER = """
         <div class="header">
-            <h1>Useful Hacks <span class="to_projects">[<a rel="me" href="http://github.com/ssokolow">Projects</a>]</span></h1>
-            <p>This page lists scripts I quickly hacked up to solve a problem but
+          <h1>Useful Hacks <span class="to_projects">[<a rel="me"
+            href="http://github.com/ssokolow">Projects</a>]</span></h1>
+          <p>This page lists scripts I quickly hacked up to solve a problem but
                 haven't had time to clean up for general use. Feel free to use
                 them if you like.</p>
-            <p id="quicktile.py" class="alert"><strong>Note:</strong> <span class="filename">quicktile.py</span> is now available as <a class="filename" href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a> on GitHub.</p>
+            <p id="quicktile.py" class="alert"><strong>Note:</strong>
+                <span class="filename">quicktile.py</span> is now available as
+                <a class="filename" href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a>
+                on GitHub.
+            </p>
         </div>
 """
 
@@ -255,7 +259,7 @@ class ScriptEntry(object):
         _['filetime'] = tmp.st_mtime
 
         # Construct a hyperlinkable anchor from the filename
-        _['anchor'] = bad_anchor_char_re.sub('_',_['filename']).lower()
+        _['anchor'] = bad_anchor_char_re.sub('_', _['filename']).lower()
         if not _['anchor'][0].isalpha():
             _['anchor'] = 'a' + _['anchor']
 
@@ -276,7 +280,7 @@ class ScriptEntry(object):
         # Allow controlled truncation of module docstrings.
         for marker in ('--snip--', '--clip--'):
             if '\n%s\n' % marker in _['description']:
-                _['description'] = _['description'].split('\n%s\n' % marker,1)[0] + '\n[...]'
+                _['description'] = _['description'].split('\n%s\n' % marker, 1)[0] + '\n[...]'
 
         # Add various pretty-printed and escaped values to the metadata dict.
         _.update({
@@ -314,11 +318,13 @@ class ScriptEntry(object):
             output += 'class="filename" '
 
         output += """href='%(get_url)s'>%(name)s</a>
-            <a href="http://flattr.com/thing/414861/Stephan-Sokolow" style="vertical-align: middle">
-<img src="flattr_icon.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+            <a href="http://flattr.com/thing/414861/Stephan-Sokolow"
+            style="vertical-align: middle"><img src="flattr_icon.png"
+            alt="Flattr this" title="Flattr this" border="0" /></a>
             </h2>
             <ul class="attr_list">
-                <li><span class="key">Size:</span> %(fsize_p)s</li>""" % self.metadata
+                <li><span class="key">Size:</span> %(fsize_p)s
+                </li>""" % self.metadata
         if self.metadata['version']:
             output += '\n<li><span class="key">Version:</span> %(version)s</li>\n' % self.metadata
         output += """<li><span class="key">License:</span> %(license_h)s</li>
@@ -334,10 +340,10 @@ class PythonScriptEntry(ScriptEntry):
 
     _variable_re = r"""^%s\s*=\s*(?P<delim>'{1,3}|\"{1,3})(?P<value>.+?)(?P=delim)\s*$"""
     _metadata_regexes = {
-            'license' : re.compile(_variable_re % '__license__', re.MULTILINE),
-               'name' : re.compile(_variable_re % '__appname__', re.MULTILINE),
-            'version' : re.compile(_variable_re % '__version__', re.MULTILINE)
-            }
+            'license': re.compile(_variable_re % '__license__', re.MULTILINE),
+            'name'   : re.compile(_variable_re % '__appname__', re.MULTILINE),
+            'version': re.compile(_variable_re % '__version__', re.MULTILINE)
+    }
 
     def _do_init(self):
         _ = self.metadata
@@ -400,11 +406,12 @@ class ShellScriptEntry(ScriptEntry):
 entryClasses = [PythonScriptEntry, ShellScriptEntry]
 
 def spamProtectEmail(match_obj):
-    """Use this as the replacement in a regex substitution with email_address_re
-    to provide some degree of spam protection for e-mail addresses in docstrings
+    """Use this as the replacement in a regex substitution with
+    email_address_re to provide some degree of spam protection for e-mail
+    addresses in docstrings.
 
     XXX: Should I add some randomness to the obfuscation approach?"""
-    maps = {'@' : ' at ', '.' : ' dot '}
+    maps = {'@': ' at ', '.': ' dot '}
 
     email = match_obj.group(0)
     for char in maps:
@@ -412,7 +419,7 @@ def spamProtectEmail(match_obj):
 
     return email
 
-def formatFileSize(size,unit='',precision=0):
+def formatFileSize(size, unit='', precision=0):
     """Take a size in bits or bytes and return it all prettied
     up and rounded to whichever unit gives the smallest number.
 
@@ -428,30 +435,32 @@ def formatFileSize(size,unit='',precision=0):
 
     # Each unit's position in the list is crucial.
     # units[2] = 'MB' and size / 1024**2 = size in MB
-    units = ['bytes','KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB']
+    units = ['bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']
 
-    if precision: size = float(size)
+    if precision:
+        size = float(size)
+
     # Did the calling function specify a valid unit of measurement?
     if unit and unit.upper() in units:         # If so, find the unit index by searching.
         unit_idx = units.index(unit)
-        size /= (1024**unit_idx)
+        size /= (1024 ** unit_idx)
     else:                                      # If not, find the unit index by iteration.
         unit_idx = 0
         while abs(size) > 1024 and unit_idx < (len(units) - 1):
             size /= 1024
             unit_idx += 1
 
-    return '%.*f %s' % (precision,size,units[unit_idx])
+    return '%.*f %s' % (precision, size, units[unit_idx])
 
 def list_content(path='.', offline=False):
-    """Generate an HTML listing of the available files, complete with metadata"""
+    """Generate an HTML listing of available files, complete with metadata"""
     scripts, categories, path = [], [], os.path.abspath(path)
 
     for name in os.listdir(os.path.abspath(path)):
         fpath = os.path.join(path, name)
 
         if os.path.isdir(fpath):
-            pass #TODO: Support categories.
+            pass  # TODO: Support categories.
         else:
             ext = os.path.splitext(name)[1]
             for ec in entryClasses:
@@ -479,7 +488,7 @@ def list_content(path='.', offline=False):
     output.append(BODY_HEADER)
 
     if categories:
-        output.append("<h2>Categories</h2>") #TODO: Add this to the table of contents.
+        output.append("<h2>Categories</h2>")  # TODO: Add this to the table of contents.
 
     for entry in scripts:
         output.append(entry.render(offline=offline))
@@ -505,20 +514,20 @@ if __name__ == '__main__':
             fh.write(HTACCESS)
     else:
         form = cgi.FieldStorage()
-        if not form.has_key("get"):
-            print "Content-Type: text/html; charset=utf-8"
-            print
-            print list_content()
+        if 'get' in form:
+            print("Content-Type: text/html; charset=utf-8")
+            print('')
+            print(list_content())
         else:
             fname = os.path.normpath(form['get'].value)
             if not os.path.abspath(fname).startswith(os.getcwd()) or not os.path.isfile(fname):
-                print "Content-Type: text/html; charset=utf-8"
-                print
-                print PAGE_HEADER
-                print "<p>Unfortunately, you have requested an invalid file. Please <a href='?'>try again</a>.</p>"
-                print PAGE_FOOTER
+                print("Content-Type: text/html; charset=utf-8")
+                print('')
+                print(PAGE_HEADER)
+                print("<p>Unfortunately, you have requested an invalid file. "
+                      "Please <a href='?'>try again</a>.</p>")
+                print(PAGE_FOOTER)
             else:
-                print "Content-Type: text/plain"
-                print
-                print file(form['get'].value).read()
-
+                print("Content-Type: text/plain")
+                print('')
+                print(file(form['get'].value).read())
