@@ -31,6 +31,7 @@ __version__ = "0.3"
 __license__ = "GNU GPL 2.0 or later"
 
 import cgi, os, parser, re, time, token, urllib
+from xml.sax.saxutils import escape as xml_escape
 
 DEFAULT_LICENSE = "GNU GPL 2.0 or newer"
 
@@ -280,9 +281,9 @@ class ScriptEntry(object):
         # Add various pretty-printed and escaped values to the metadata dict.
         _.update({
             'fname_q': urllib.quote_plus(self.metadata['filename']),
-            'fsize_p':formatFileSize(self.metadata['filesize']),
-            'desc_e': self._xml_escape(self.metadata['description']),
-            'mtime': time.strftime('%Y-%m-%d %H:%M:%S UTC',time.gmtime(self.metadata['filetime']))
+            'fsize_p': formatFileSize(self.metadata['filesize']),
+            'desc_e': xml_escape(self.metadata['description']),
+            'mtime': time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime(self.metadata['filetime']))
         })
 
         # Hyperlink all the URLs in the description.
@@ -300,10 +301,6 @@ class ScriptEntry(object):
     def _do_init(self):
         """Code to actually extract format-specific metadata goes here."""
         raise NotImplementedError("Cannot instantiate abstract class")
-
-    def _xml_escape(self, instr):
-        """Perform basic XML escaping on the provided string."""
-        return instr.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
 
     def render(self, offline=False):
         if offline:
