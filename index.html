@@ -167,26 +167,22 @@
                     href="https://github.com/"><img src="img/github_name.png"
                     alt="GitHub" /></a> user.
             </div>
-            <!-- Piwik -->
-            <script type="text/javascript">
-            try {
-                var _paq = _paq || [];
-                (function(){
-                    var u=(("https:" == document.location.protocol) ? "https://blog.ssokolow.com/stats/" : "http://blog.ssokolow.com/stats/");
-                    _paq.push(['setSiteId', 4]);
-                    _paq.push(['setTrackerUrl', u+'piwik.php']);
-                    _paq.push(['trackPageView']);
-                    _paq.push(['enableLinkTracking']);
-                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                    g.type='text/javascript';
-                    g.defer=true;
-                    g.async=true;
-                    g.src=u+'piwik.js';
-                    s.parentNode.insertBefore(g,s);
-                })();
-            } catch( err ) {}
-            </script><noscript><p><img src="http://blog.ssokolow.com/stats/piwik.php?idsite=5" style="border:0" alt="" /></p></noscript>
-            <!-- End Piwik Tracking Code -->
         </div>
+        <!-- Piwik -->
+        <script type="text/javascript">
+          var _paq = _paq || [];
+          _paq.push(["trackPageView"]);
+          _paq.push(["enableLinkTracking"]);
+
+          (function() {
+            var u=(("https:" == document.location.protocol) ? "https" : "http") + "://blog.ssokolow.com/stats/";
+            _paq.push(["setTrackerUrl", u+"piwik.php"]);
+            _paq.push(["setSiteId", "5"]);
+            var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+            g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+        <noscript><img src="http://blog.ssokolow.com/stats/piwik.php?idsite=5&amp;rec=1" style="border:0" alt="" /></noscript>
+        <!-- End Piwik -->
     </body>
 </html>
