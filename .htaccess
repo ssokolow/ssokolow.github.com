@@ -2,7 +2,7 @@ RedirectPermanent /List_of_GenderBending http://gbindex.ssokolow.com/
 RedirectPermanent /ContactMe http://blog.ssokolow.com/contact/
 
 <Files index.html>
-    Header set X-XRDS-Location "http://www.myopenid.com/xrds?username=ssokolow.myopenid.com"
+    Header set X-XRDS-Location "http://oid.ssokolow.com/xrds/ssokolow"
 </Files>
 
 <Files yadis.xml>
