@@ -34,7 +34,8 @@ def checkStart(line):
         if line.endswith(suffix.strip()):
             return False  # Don't block whitelisted servers
 
-    for prefix in ('127.0.0.1 ', '127.0.0.1\t', '#'):
+    for prefix in ('#', '127.0.0.1 ', '127.0.0.1\t',
+            '0.0.0.0 ', '0.0.0.0\t'):
         if not line or line.strip().startswith(prefix):
             return True  # Allow 127.0.0.1/0.0.0.0 lines, comments, and blanks.
     return False  # Block everything else.
