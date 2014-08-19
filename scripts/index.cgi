@@ -185,8 +185,17 @@ BODY_HEADER = """
                 them if you like.</p>
             <p id="quicktile.py" class="alert"><strong>Note:</strong>
                 <span class="filename">quicktile.py</span> is now available as
-                <a class="filename" href="http://github.com/ssokolow/quicktile/tree/master">ssokolow/quicktile</a>
-                on GitHub.
+                <a class="filename"
+                href="http://github.com/ssokolow/quicktile/tree/master"
+                >ssokolow/quicktile</a> on GitHub.
+            </p>
+            <p id="fastdupes.py" class="alert"><strong>Note:</strong>
+                Find Dupes Fast (A.K.A.
+                <span class="filename">fastdupes.py</span>)
+                is now available as
+                <a class="filename"
+                href="http://github.com/ssokolow/fastdupes"
+                >ssokolow/fastdupes</a> on GitHub.
             </p>
         </div>
 """
