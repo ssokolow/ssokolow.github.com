@@ -230,7 +230,7 @@ PAGE_FOOTER = """
 control_char_re      = re.compile('[\x00-\x09\x0B\x0C\x0E-\x1F]')
 
 bad_anchor_char_re   = re.compile('[^A-Za-z0-9-_:.]+')
-hyperlinkable_url_re = re.compile(r"""((?:ht|f)tps?://[^\s()]+(?:\([^\s()]+\))*[^\s()]*)""", re.IGNORECASE | re.UNICODE)
+hyperlinkable_url_re = re.compile(r"""((?:ht|f)tps?://[^\s()]+(?:\([^\s()]*\)[^\s()]*)*)""", re.IGNORECASE | re.UNICODE)
 
 _bc = r"""!@#$%^&*()=+{}[\]|\;:'"/?>,<\s"""
 email_address_re     = re.compile(r"""(?P<email>[^%s]+@[^%s]+\.[^%s]*[^.%s])""" % (_bc, _bc, _bc, _bc), re.UNICODE)
