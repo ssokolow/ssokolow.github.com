@@ -110,7 +110,8 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
                 border-radius: 1em;
                 -moz-border-radius: 1em;
                 -webkit-border-radius: 1em;
-                width: 50em;
+                max-width: 50em;
+                white-space: pre-wrap;
                 clear: right;
                 overflow-x: auto;
             }
