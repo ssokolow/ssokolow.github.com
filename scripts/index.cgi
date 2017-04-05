@@ -27,7 +27,7 @@ TODO:
 
 __appname__ = "Lazybones Script Lister"
 __author__  = "Stephan Sokolow (deitarion/SSokolow)"
-__version__ = "0.3"
+__version__ = "0.3.1"
 __license__ = "GNU GPL 2.0 or later"
 
 import cgi, os, parser, re, time, token, urllib
@@ -65,6 +65,7 @@ PAGE_HEADER = """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
     <head>
         <title>Useful Hacks @ ssokolow.com</title>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
         <style type="text/css">
             body { font-family: sans-serif; }
