@@ -24,4 +24,4 @@ fi
 OUT=$(sed 's@.flac$@.ogg@' <<< "$2")
 oggenc -q 5 -o "$OUT" --title "$3" --artist "$4" --album "$5" --date "$6" --tracknum "$7" --genre "$8" "$1"
 
-flac --best -o "$2" --tag=Title="$3" --tag=Artist="$4" --tag=Album="$5" --tag=Date="$6" --tag=Tracknumber="$7" --tag=Genre="$8" "$1"
+flac -V --best -o "$2" --tag=Title="$3" --tag=Artist="$4" --tag=Album="$5" --tag=Date="$6" --tag=Tracknumber="$7" --tag=Genre="$8" "$1"
