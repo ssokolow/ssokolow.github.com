@@ -23,6 +23,7 @@ ADHOST_SUFFIX_WHITELIST = ['.projectwonderful.com', 'piwik.org']
 
 import os, sys, urllib2
 
+
 def checkStart(line):
     """Only pass lines which are comments or 127.0.0.1 lines to ensure that
     downloaded hosts lists can't be hijacked for DNS-based phishing.
@@ -39,6 +40,7 @@ def checkStart(line):
         if not line or line.strip().startswith(prefix):
             return True  # Allow 127.0.0.1/0.0.0.0 lines, comments, and blanks.
     return False  # Block everything else.
+
 
 if os.geteuid() == 0:
     # Retrieve the MVPS hosts file and play it safe
@@ -58,7 +60,7 @@ if os.geteuid() == 0:
         localhosts = []
 
     warning = ["# WARNING: This file was auto-generated.",
-    "Please edit /etc/hosts.local and run "
+    "# Please edit /etc/hosts.local and run "
     "%s instead" % os.path.split(sys.argv[0])[1]]
 
     output = '\n'.join(warning + [''] + localhosts + [''] + adhosts)
