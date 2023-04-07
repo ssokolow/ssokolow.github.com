@@ -1,6 +1,6 @@
 body {
-    font-family: sans-serif;
-    color: black;
+  font-family: sans-serif;
+  color: black;
 }
 a:link { color: #00e; }
 a:visited { color: #800080; }
@@ -13,120 +13,118 @@ span.block { display: inline-block; }
 .inactive { color: gray; }
 
 /* Basic Structure */
-section {
-    display: block; /* For browsers with "partial support" */
-    margin: 1em auto;
-    padding: 1em;
-    background: #fafafa no-repeat 10px 10px;
-    border: 1px solid #bbb;
-    box-shadow: 3px 4px 0 0 #ddd;
+section, details {
+  display: block; /* For browsers with "partial support" */
+  margin: 1em auto;
+  padding: 1em;
+  background: #fafafa no-repeat 10px 10px;
+  border: 1px solid #bbb;
+  box-shadow: 3px 4px 0 0 #ddd;
 
-    width: 24em;
-    max-width: 87%;
+  width: 24em;
+  max-width: 87%;
 }
 
-section h3 {
-    font-size: 100%;
-    margin: 0 0 0 1ex;
-}
-
-section ul { margin: 0.5ex 0 1ex 0; }
 div.clear { clear: both; }
-h2 a:link, h2 a:visited {
-    color: black;
-    text-decoration: none;
-}
 
 /* Accordion sections */
-#accordion section h2 {
-    margin: 0;
-    border-bottom: 1px dashed gray;
+#accordion summary {
+  margin: 0;
+  border-bottom: 1px dashed gray;
+  font-size: 150%;
+  font-weight: bold;
+  cursor: pointer;
 }
-#accordion section h2:hover { border-bottom-style: solid; }
-#accordion section h2 + div { padding-top: 1ex; }
+#accordion details[open] summary { margin-bottom: 1ex; }
+#accordion summary:hover { border-bottom-style: solid; }
+#accordion summary {
+  display: block;
+  transition: margin-bottom 150ms ease-out;
+}
+#accordion ul { margin: 0.5ex 0 1ex 0; }
+#accordion h3 {
+  font-size: 100%;
+  margin: 0 0 0 1ex;
+}
 
 /* Sticky Footer */
 * { margin: 0; }
 html, body { height: 97%; }
 .content {
-    min-height: 100%;
-    margin: 0 auto -2em;
+  min-height: 100%;
+  margin: 0 auto -2em;
 }
 .footer, .push { height: 2em; }
 
 /* My hCard */
 .vcard { position: relative; }
 .vcard img.photo {
-    float: left;
-    margin-right: 1em;
+  float: left;
+  margin-right: 1em;
 }
 .vcard ul {
-    padding: 0;
+  padding: 0;
 }
 .vcard ul { list-style-type: none; }
 .vcard ul li.icons { padding-bottom: 1em; }
 .vcard ul li.s { font-size: 80%; padding: 0.2ex 0 0 0; }
 .vcard h2 {
-    font-size: 120%;
-    font-weight: bold;
-    margin-top: 0.5ex;
+  font-size: 120%;
+  font-weight: bold;
+  margin-top: 0.5ex;
 }
 .vcard li.s, li.icons { padding-left: 1ex; }
 li.icons address { display: inline; }
 .vcard a.getlink {
-    text-decoration: none;
-    font-size: 75%;
-    text-align: right;
-    position: absolute;
-    bottom: 1ex;
-    right: 1ex;
+  text-decoration: none;
+  font-size: 75%;
+  text-align: right;
+  position: absolute;
+  bottom: 1ex;
+  right: 1ex;
 }
 a img { vertical-align: middle; }
 .vcard a.getlink:before {
-    vertical-align: middle;
-    content: url(img/get_vcard.png);
+  vertical-align: middle;
+  content: url(img/get_vcard.png);
 }
 
 /* Endorsement Line */
 .nfsn_badge {
-    text-align: right;
-    margin: 1em 1em 0.5ex;
-    font-size: 75%;
-    color: gray;
+  text-align: right;
+  margin: 1em 1em 0.5ex;
+  font-size: 75%;
+  color: gray;
 }
 .nfsn_badge img { vertical-align: top; }
 
 .qrcode {
-   position: absolute;
-   top: 0;
-   right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 /* Responsive media queries */
 @media all and (max-width: 320px) {
-    body { padding: 5px; }
-    section {
-        max-width: 95%;
-        margin: 1em 0 0 0;
-        padding: 0.5ex;
-    }
-    .extra_word { display: none; }
+  body { padding: 5px; }
+  section, details {
+    max-width: 95%;
+    margin: 1em 0 0 0;
+    padding: 0.5ex;
+  }
+  .extra_word { display: none; }
+  .vcard ul { margin-bottom: 2em; }
 }
 @media all and (max-width: 620px) {
-    .qrcode { display: none; }
+  .qrcode { display: none; }
 }
 
 @media print {
-    .qrcode {
-        /* Center in flow to ensure it's accessible */
-        position: static;
-        display: block;
-        margin: auto;
-        page-break-inside: avoid;
-    }
-    .ui-accordion-content {
-        display: block !important;
-        height: auto !important;
-    }
-    #accordion h2 { border-bottom-style: solid !important; }
+  .qrcode {
+    /* Center in flow to ensure it's accessible */
+    position: static;
+    display: block;
+    margin: auto;
+    page-break-inside: avoid;
+  }
 }
